@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:jamur/models/user_model.dart';
+import 'package:jamur/providers/auth_provider.dart';
+import 'package:jamur/providers/product_provider.dart';
 import 'package:jamur/theme.dart';
 import 'package:jamur/widgets/product_card.dart';
 import 'package:jamur/widgets/product_tile.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+    final products = productProvider.products;
 
     Widget header() {
       return Container(
@@ -21,14 +30,14 @@ class HomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hallo, Januar',
+                    'Hallo, ${user.name}',
                     style: primaryTextStyle.copyWith(
                       fontSize: 24,
                       fontWeight: semiBold,
                     ),
                   ),
                   Text(
-                    '@januar',
+                    '@${user.username}',
                     style: subtitleTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -78,7 +87,7 @@ class HomePage extends StatelessWidget {
                   color: primaryColor,
                 ),
                 child: Text(
-                  'All Jamur',
+                  'Semua Jamur',
                   style: primaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -108,7 +117,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-               Container(
+              Container(
                 padding: EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 10,
@@ -145,7 +154,7 @@ class HomePage extends StatelessWidget {
           right: defaultMargin,
         ),
         child: Text(
-          'Popular Products',
+          'Produk Terlaris',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
@@ -154,7 +163,7 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    Widget popularProducs() {
+    Widget popularProducts() {
       return Container(
         margin: EdgeInsets.only(
           top: 14,
@@ -167,12 +176,7 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Row(
-                children: [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
-                ],
+                children: products.map((product) => ProductCard(product)).toList(),
               ),
             ],
           ),
@@ -188,7 +192,7 @@ class HomePage extends StatelessWidget {
           right: defaultMargin,
         ),
         child: Text(
-          'New Arrivals',
+          'Produk Terbaru',
           style: primaryTextStyle.copyWith(
             fontSize: 22,
             fontWeight: semiBold,
@@ -203,11 +207,7 @@ class HomePage extends StatelessWidget {
           top: 14,
         ),
         child: Column(
-          children: [
-            ProductTile(),
-            ProductTile(),
-            ProductTile(),
-          ],
+          children: products.map((product) => ProductTile(product)).toList(),
         ),
       );
     }
@@ -217,7 +217,7 @@ class HomePage extends StatelessWidget {
         header(),
         categories(),
         popularProductsTitle(),
-        popularProducs(),
+        popularProducts(),
         newArrivalsTitle(),
         newArrivals(),
       ],

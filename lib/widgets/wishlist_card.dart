@@ -1,9 +1,21 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:jamur/models/product_model.dart';
+import 'package:jamur/providers/wishlist_provider.dart';
 import 'package:jamur/theme.dart';
+import 'package:provider/provider.dart';
 
 class WishListCard extends StatelessWidget {
+
+  final ProductModel product;
+  WishListCard(this.product);
+
   @override
   Widget build(BuildContext context) {
+    
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     return Container(
       margin: EdgeInsets.only(top: 20,),
       padding: EdgeInsets.only(
@@ -32,21 +44,26 @@ class WishListCard extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'Jamur Tiram 1/4 kg',
+                  product.name!,
                   style: primaryTextStyle.copyWith(
                     fontWeight: semiBold,
                   ),
                 ),
                 Text(
-                  'Rp 6.000',
+                  'Rp ${product.price}',
                   style: priceTextStyle,
                 ),
               ],
             ),
           ),
-          Image.asset(
-            'assets/button_wishlist_blue.png',
-            width: 30,
+          GestureDetector(
+            onTap: () {
+              wishlistProvider.setProduct(product);
+            },
+            child: Image.asset(
+              'assets/button_wishlist_blue.png',
+              width: 30,
+            ),
           ),
         ],
       ),

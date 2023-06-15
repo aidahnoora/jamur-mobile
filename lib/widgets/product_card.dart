@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:jamur/models/product_model.dart';
+import 'package:jamur/pages/product_page.dart';
 import 'package:jamur/theme.dart';
 
 class ProductCard extends StatelessWidget {
+
+  final ProductModel product;
+
+  ProductCard(
+    this.product
+  );
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductPage(product),
+          ),
+        );
       },
       child: Container(
         width: 215,
@@ -26,11 +40,15 @@ class ProductCard extends StatelessWidget {
             ),
             Image.asset(
               'assets/image_jamur.jpeg',
+              // product.galleries![0].url,
               width: 215,
               height: 150,
               fit: BoxFit.cover,
             ),
             Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
               margin: EdgeInsets.symmetric(
                 horizontal: 20,
               ),
@@ -39,23 +57,24 @@ class ProductCard extends StatelessWidget {
                 children: [
                   SizedBox(height: 6,),
                   Text(
-                    'Tiram',
+                    product.category!.name,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
                   ),
                   SizedBox(height: 6,),
                   Text(
-                    'Tiram 1/2 kg',
+                    product.name!,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semiBold,
                     ),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   SizedBox(height: 6,),
                   Text(
-                    'Rp 12.000',
+                    'Rp ${product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 14,
                       fontWeight: medium,

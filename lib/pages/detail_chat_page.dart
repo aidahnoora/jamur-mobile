@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:jamur/models/product_model.dart';
+import 'package:jamur/providers/auth_provider.dart';
+import 'package:jamur/services/message_service.dart';
 import 'package:jamur/theme.dart';
 import 'package:jamur/widgets/chat_bubble.dart';
+import 'package:provider/provider.dart';
 
-class DetailChatPage extends StatelessWidget {
+class DetailChatPage extends StatefulWidget {
+  DetailChatPage(this.product, {super.key});
+
+  ProductModel product;
+
+  @override
+  State<DetailChatPage> createState() => _DetailChatPageState();
+}
+
+class _DetailChatPageState extends State<DetailChatPage> {
+  final _messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
+
     PreferredSizeWidget header() {
       return PreferredSize(
         preferredSize: Size.fromHeight(60),
@@ -65,10 +82,7 @@ class DetailChatPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                'assets/image_jamur.jpeg',
-                width: 54,
-              ),
+              child: Image.network(widget.product.galleries![0].url, width: 54),
             ),
             SizedBox(
               width: 10,
@@ -79,7 +93,7 @@ class DetailChatPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Jamur Tiram 1 kg',
+                    widget.product.name!,
                     style: primaryTextStyle,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -87,7 +101,7 @@ class DetailChatPage extends StatelessWidget {
                     height: 2,
                   ),
                   Text(
-                    'Rp 12.000',
+                    'Rp ${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),
@@ -95,9 +109,13 @@ class DetailChatPage extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset(
-              'assets/button_close.png',
-              width: 22,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  widget.product = UninitializedProductModel();
+                });
+              },
+              child: Image.asset('assets/button_close.png', width: 22),
             ),
           ],
         ),
@@ -111,7 +129,9 @@ class DetailChatPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            productPreview(),
+            widget.product is UninitializedProductModel
+                ? const SizedBox()
+                : productPreview(),
             Row(
               children: [
                 Expanded(
@@ -127,7 +147,7 @@ class DetailChatPage extends StatelessWidget {
                     child: Center(
                       child: TextFormField(
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Type Message...',
+                          hintText: 'Tulis Pesan...',
                           hintStyle: subtitleTextStyle,
                         ),
                       ),
@@ -137,9 +157,21 @@ class DetailChatPage extends StatelessWidget {
                 SizedBox(
                   width: 20,
                 ),
-                Image.asset(
-                  'assets/button_send.png',
-                  width: 45,
+                GestureDetector(
+                  onTap: () async {
+                    await MessageService().addMessage(
+                      user: authProvider.user,
+                      isFromUser: true,
+                      message: _messageController.text,
+                      product: widget.product,
+                    );
+
+                    setState(() {
+                      widget.product = UninitializedProductModel();
+                      _messageController.text = '';
+                    });
+                  },
+                  child: Image.asset('assets/button_send.png', width: 45),
                 ),
               ],
             ),

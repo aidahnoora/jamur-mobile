@@ -44,6 +44,10 @@ TextStyle blackTextStyle = GoogleFonts.nunito(
   color: blackColor,
 );
 
+TextStyle alertTextStyle = GoogleFonts.nunito(
+  color: alertColor,
+);
+
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;

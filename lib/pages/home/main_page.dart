@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jamur/pages/home/chat_page.dart';
 import 'package:jamur/pages/home/home_page.dart';
 import 'package:jamur/pages/home/profile.dart';
 import 'package:jamur/pages/home/wishlist_page.dart';
@@ -17,12 +16,14 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     Widget cartButton() {
       return FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/cart');
+        },
         backgroundColor: secondaryColor,
-        // child: Image.asset(
-        //   'assets/icon_cart.png',
-        //   width: 20,
-        // ),
+        child: Image.asset(
+          'assets/icon_cart.png',
+          width: 20,
+        ),
       );
     }
 
@@ -67,8 +68,8 @@ class _MainPageState extends State<MainPage> {
                     bottom: 10,
                   ),
                   child: Image.asset(
-                    // 'assets/icon_chat.png',
-                    'assets/icon_cart.png',
+                    'assets/icon_chat.png',
+                    // 'assets/icon_cart.png',
                     width: 20,
                     color: currentIndex == 1 ? primaryColor : Color(0xff808191),
                   ),

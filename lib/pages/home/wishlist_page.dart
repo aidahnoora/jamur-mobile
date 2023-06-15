@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:jamur/providers/wishlist_provider.dart';
 import 'package:jamur/theme.dart';
 import 'package:jamur/widgets/wishlist_card.dart';
+import 'package:provider/provider.dart';
 
 class WishListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
 
     Widget header() {
       return AppBar(
@@ -30,7 +33,9 @@ class WishListPage extends StatelessWidget {
                 'assets/image_wishlist.png',
                 width: 74,
               ),
-              SizedBox(height: 23,),
+              SizedBox(
+                height: 23,
+              ),
               Text(
                 'Belum ada favorit?',
                 style: primaryTextStyle.copyWith(
@@ -38,12 +43,16 @@ class WishListPage extends StatelessWidget {
                   fontWeight: medium,
                 ),
               ),
-              SizedBox(height: 12,),
+              SizedBox(
+                height: 12,
+              ),
               Text(
                 'Ayo pilih jamur favoritmu!',
                 style: secondaryTextStyle,
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 height: 44,
                 child: TextButton(
@@ -59,7 +68,7 @@ class WishListPage extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Explore Store',
+                    'Belanja',
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
@@ -71,7 +80,9 @@ class WishListPage extends StatelessWidget {
           ),
         ),
       );
-    };
+    }
+
+    ;
 
     Widget content() {
       return Expanded(
@@ -81,11 +92,9 @@ class WishListPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(
               horizontal: defaultMargin,
             ),
-            children: [
-              WishListCard(),
-              WishListCard(),
-              WishListCard(),
-            ],
+            children: wishlistProvider.wishlist
+                .map((product) => WishListCard(product))
+                .toList(),
           ),
         ),
       );
@@ -95,7 +104,7 @@ class WishListPage extends StatelessWidget {
       children: [
         header(),
         // emptyWishList(),
-        content(),
+        wishlistProvider.wishlist.length == 0 ? emptyWishList() : content(),
       ],
     );
   }
