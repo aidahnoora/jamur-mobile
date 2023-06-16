@@ -82,7 +82,9 @@ class _DetailChatPageState extends State<DetailChatPage> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(widget.product.galleries![0].url, width: 54),
+              child: Image.network(
+                widget.product.galleries![0].url, width: 54
+              ),
             ),
             SizedBox(
               width: 10,

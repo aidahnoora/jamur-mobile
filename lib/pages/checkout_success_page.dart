@@ -68,32 +68,32 @@ class CheckoutSuccessPage extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: 196,
-              height: 44,
-              margin: EdgeInsets.only(
-                top: 12,
-              ),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Color(0xff39374B),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Text(
-                  'Lihat pesanan',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: medium,
-                    color: Color(0xffB7B6BF)
-                  ),
-                ),
-              ),
-            ),
+            // Container(
+            //   width: 196,
+            //   height: 44,
+            //   margin: EdgeInsets.only(
+            //     top: 12,
+            //   ),
+            //   child: TextButton(
+            //     onPressed: () {
+            //       Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+            //     },
+            //     style: TextButton.styleFrom(
+            //       backgroundColor: Color(0xff39374B),
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(12),
+            //       ),
+            //     ),
+            //     child: Text(
+            //       'Lihat pesanan',
+            //       style: primaryTextStyle.copyWith(
+            //         fontSize: 16,
+            //         fontWeight: medium,
+            //         color: Color(0xffB7B6BF)
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       );

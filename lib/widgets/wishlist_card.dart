@@ -15,6 +15,10 @@ class WishListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    
+    String baseurl = 'http://192.168.0.107:8000';
+    String url = product.galleries![0].url;
+    String result = url.replaceAll('http://localhost', '');
 
     return Container(
       margin: EdgeInsets.only(top: 20,),
@@ -32,8 +36,15 @@ class WishListCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/image_jamur.jpeg',
+            child: 
+            // Image.asset(
+            //   'assets/image_jamur.jpeg',
+            //   width: 60,
+            // ),
+            Image.asset(
+              '${baseurl}${result}',
+              // product.galleries![0].url,
+              // 'https://picsum.photos/250?image=9',
               width: 60,
             ),
           ),

@@ -3,12 +3,15 @@ import 'package:jamur/models/cart_model.dart';
 import 'package:jamur/theme.dart';
 
 class CheckoutCard extends StatelessWidget {
-
   final CartModel cart;
   CheckoutCard(this.cart);
 
   @override
   Widget build(BuildContext context) {
+    String baseurl = 'http://192.168.0.107:8000';
+    String url = cart.product.galleries![0].url;
+    String result = url.replaceAll('http://localhost', '');
+
     return Container(
       margin: EdgeInsets.only(
         top: 12,
@@ -29,8 +32,11 @@ class CheckoutCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
-                image: AssetImage('assets/image_jamur.jpeg'),
-                // cart.product.galleries![0].url,
+                // image: AssetImage('assets/image_jamur.jpeg'),
+                image: NetworkImage(
+                  '${baseurl}${result}',
+                  // cart.product.galleries![0].url,
+                ),
               ),
             ),
           ),

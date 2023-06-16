@@ -4,15 +4,16 @@ import 'package:jamur/pages/product_page.dart';
 import 'package:jamur/theme.dart';
 
 class ProductTile extends StatelessWidget {
-
   final ProductModel product;
 
-  ProductTile(
-    this.product
-  );
+  ProductTile(this.product);
 
   @override
   Widget build(BuildContext context) {
+    String baseurl = 'http://192.168.0.107:8000';
+    String url = product.galleries![0].url;
+    String result = url.replaceAll('http://localhost', '');
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -32,9 +33,17 @@ class ProductTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                'assets/image_jamur.jpeg',
+              child:
+                  // Image.asset(
+                  //   'assets/image_jamur.jpeg',
+                  //   width: 120,
+                  //   height: 120,
+                  //   fit: BoxFit.cover,
+                  // ),
+                Image.asset(
+                '${baseurl}${result}',
                 // product.galleries![0].url,
+                // 'https://picsum.photos/250?image=9',
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
@@ -53,7 +62,9 @@ class ProductTile extends StatelessWidget {
                       fontSize: 12,
                     ),
                   ),
-                  SizedBox(height: 6,),
+                  SizedBox(
+                    height: 6,
+                  ),
                   Text(
                     product.name!,
                     style: primaryTextStyle.copyWith(
@@ -61,7 +72,9 @@ class ProductTile extends StatelessWidget {
                       fontWeight: semiBold,
                     ),
                   ),
-                  SizedBox(height: 6,),
+                  SizedBox(
+                    height: 6,
+                  ),
                   Text(
                     'Rp ${product.price}',
                     style: priceTextStyle.copyWith(

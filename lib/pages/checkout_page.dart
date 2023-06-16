@@ -17,9 +17,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
   @override
   Widget build(BuildContext context) {
+    
     CartProvider cartProvider = Provider.of<CartProvider>(context);
-    TransactionProvider transactionProvider =
-        Provider.of<TransactionProvider>(context);
+    TransactionProvider transactionProvider = Provider.of<TransactionProvider>(context);
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleCheckout() async {
@@ -146,7 +146,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           height: defaultMargin,
                         ),
                         Text(
-                          'Alamatmu',
+                          'Alamat',
                           style: secondaryTextStyle.copyWith(
                             fontSize: 12,
                             fontWeight: light,

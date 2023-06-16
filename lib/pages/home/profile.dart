@@ -114,10 +114,8 @@ class ProfilePage extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(context, '/edit-profile');
                 },
-                child: menuItem('Edit Profil')
+                child: menuItem('Lihat Profil')
               ),
-              menuItem('Pesanan'),
-              menuItem('Bantuan'),
             ],
           ),
         ),

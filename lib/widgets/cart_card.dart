@@ -5,14 +5,16 @@ import 'package:jamur/theme.dart';
 import 'package:provider/provider.dart';
 
 class CartCard extends StatelessWidget {
-
   final CartModel cart;
   CartCard(this.cart);
 
   @override
   Widget build(BuildContext context) {
-
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+    
+    String baseurl = 'http://192.168.0.107:8000';
+    String url = cart.product.galleries![0].url;
+    String result = url.replaceAll('http://localhost', '');
 
     return Container(
       margin: EdgeInsets.only(
@@ -36,7 +38,11 @@ class CartCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: AssetImage('assets/image_jamur.jpeg'),
+                    // image: AssetImage('assets/image_jamur.jpeg'),
+                    image: NetworkImage(
+                      '${baseurl}${result}',
+                      // cart.product.galleries![0].url,
+                    ),
                   ),
                 ),
               ),

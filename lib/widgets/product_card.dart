@@ -13,6 +13,11 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  
+  String baseurl = 'http://192.168.0.107:8000';
+  String url = product.galleries![0].url;
+  String result = url.replaceAll('http://localhost', '');
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -38,9 +43,16 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
+            // Image.asset(
+            //   'assets/image_jamur.jpeg',
+            //   width: 215,
+            //   height: 150,
+            //   fit: BoxFit.cover,
+            // ),
             Image.asset(
-              'assets/image_jamur.jpeg',
+              '${baseurl}${result}',
               // product.galleries![0].url,
+              // 'https://picsum.photos/250?image=9',
               width: 215,
               height: 150,
               fit: BoxFit.cover,
