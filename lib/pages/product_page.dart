@@ -8,7 +8,6 @@ import 'package:jamur/theme.dart';
 import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
-  
   final ProductModel product;
   ProductPage(this.product);
 
@@ -35,6 +34,8 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
     CartProvider cartProvider = Provider.of<CartProvider>(context);
+
+    String baseurl = 'http://192.168.0.107:8000';
 
     Future<void> showSuccessDialog() async {
       return showDialog(
@@ -167,7 +168,7 @@ class _ProductPageState extends State<ProductPage> {
           CarouselSlider(
             items: widget.product.galleries!
                 .map((image) => Image.network(
-                      image.url,
+                      '${baseurl}${image.url.replaceAll('http://localhost', '')}',
                       width: MediaQuery.of(context).size.width,
                       height: 310,
                       fit: BoxFit.cover,
@@ -386,7 +387,7 @@ class _ProductPageState extends State<ProductPage> {
                         child: Container(
                           height: 54,
                           child: TextButton(
-                            onPressed: (){
+                            onPressed: () {
                               cartProvider.addCart(widget.product);
                               showSuccessDialog();
                             },

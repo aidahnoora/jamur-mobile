@@ -49,7 +49,7 @@ class ProductCard extends StatelessWidget {
             //   height: 150,
             //   fit: BoxFit.cover,
             // ),
-            Image.asset(
+            Image.network(
               '${baseurl}${result}',
               // product.galleries![0].url,
               // 'https://picsum.photos/250?image=9',
