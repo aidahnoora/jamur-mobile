@@ -1,5 +1,7 @@
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:jamur/pages/history_transaction_page.dart';
+import 'package:jamur/providers/history_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:jamur/pages/cart_page.dart';
 import 'package:jamur/pages/checkout_page.dart';
@@ -47,6 +49,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => PageProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => HistoryProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -59,6 +64,7 @@ class MyApp extends StatelessWidget {
           '/cart': (_) => CartPage(),
           '/checkout': (_) => CheckoutPage(),
           '/checkout-success': (_) => CheckoutSuccessPage(),
+          '/history': (_) => HistoryTransactionPage(),
         },
       ),
     );
