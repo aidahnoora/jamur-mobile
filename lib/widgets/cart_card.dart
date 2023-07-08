@@ -20,7 +20,7 @@ class CartCard extends StatelessWidget {
       margin: EdgeInsets.only(
         top: defaultMargin,
       ),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 10,
       ),
@@ -46,7 +46,7 @@ class CartCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               Expanded(
@@ -77,7 +77,7 @@ class CartCard extends StatelessWidget {
                       width: 16,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 2,
                   ),
                   Text(
@@ -86,7 +86,7 @@ class CartCard extends StatelessWidget {
                       fontWeight: medium,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 2,
                   ),
                   GestureDetector(
@@ -102,7 +102,7 @@ class CartCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           GestureDetector(
@@ -115,7 +115,7 @@ class CartCard extends StatelessWidget {
                   'assets/icon_remove.png',
                   width: 10,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 4,
                 ),
                 Text(

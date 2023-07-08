@@ -5,6 +5,8 @@ import 'package:jamur/widgets/cart_card.dart';
 import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
+  const CartPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     CartProvider cartProvider = Provider.of<CartProvider>(context);
@@ -13,7 +15,7 @@ class CartPage extends StatelessWidget {
       return AppBar(
         backgroundColor: backgroundColor1,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Keranjang',
         ),
         elevation: 0,
@@ -29,7 +31,7 @@ class CartPage extends StatelessWidget {
               'assets/icon_empty_cart.png',
               width: 80,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
@@ -39,14 +41,14 @@ class CartPage extends StatelessWidget {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Text('Ayo cari jamur favoritmu', style: secondaryTextStyle),
             Container(
               width: 154,
               height: 44,
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 20,
               ),
               child: TextButton(
@@ -86,7 +88,7 @@ class CartPage extends StatelessWidget {
     }
 
     Widget customButtonNav() {
-      return Container(
+      return SizedBox(
         height: 180,
         child: Column(
           children: [
@@ -111,14 +113,14 @@ class CartPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Divider(
               thickness: 0.3,
               color: subtitleColor,
             ),
-            SizedBox(
+            const SizedBox(
               height: 31,
             ),
             Container(
@@ -132,7 +134,7 @@ class CartPage extends StatelessWidget {
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: primaryColor,
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 20,
                   ),
                   shape: RoundedRectangleBorder(
@@ -165,8 +167,8 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: backgroundColor3,
       appBar: header(),
-      body: cartProvider.carts.length == 0 ? emptyCart() : content(),
-      bottomNavigationBar: cartProvider.carts.length == 0 ? SizedBox() : customButtonNav(),
+      body: cartProvider.carts.isEmpty ? emptyCart() : content(),
+      bottomNavigationBar: cartProvider.carts.isEmpty ? const SizedBox() : customButtonNav(),
     );
   }
 }

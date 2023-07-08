@@ -8,6 +8,8 @@ import 'package:jamur/widgets/product_tile.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -48,7 +50,7 @@ class HomePage extends StatelessWidget {
             Container(
               width: 54,
               height: 54,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage(
@@ -75,11 +77,11 @@ class HomePage extends StatelessWidget {
                 width: defaultMargin,
               ),
               Container(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 10,
                 ),
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   right: 16,
                 ),
                 decoration: BoxDecoration(
@@ -95,11 +97,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 10,
                 ),
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   right: 16,
                 ),
                 decoration: BoxDecoration(
@@ -118,11 +120,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 10,
                 ),
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   right: 16,
                 ),
                 decoration: BoxDecoration(
@@ -165,7 +167,7 @@ class HomePage extends StatelessWidget {
 
     Widget popularProducts() {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 14,
         ),
         child: SingleChildScrollView(
@@ -203,7 +205,7 @@ class HomePage extends StatelessWidget {
 
     Widget newArrivals() {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 14,
         ),
         child: Column(

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:jamur/theme.dart';
 
 class LoadingButton extends StatelessWidget {
+  const LoadingButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 40,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: TextButton(
           onPressed: () {},
           style: TextButton.styleFrom(
@@ -29,7 +31,7 @@ class LoadingButton extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 6,
               ),
               Text(

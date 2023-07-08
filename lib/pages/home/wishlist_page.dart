@@ -5,6 +5,8 @@ import 'package:jamur/widgets/wishlist_card.dart';
 import 'package:provider/provider.dart';
 
 class WishListPage extends StatelessWidget {
+  const WishListPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
@@ -13,7 +15,7 @@ class WishListPage extends StatelessWidget {
       return AppBar(
         backgroundColor: backgroundColor1,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Favorit',
         ),
         elevation: 0,
@@ -33,7 +35,7 @@ class WishListPage extends StatelessWidget {
                 'assets/image_wishlist.png',
                 width: 74,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 23,
               ),
               Text(
@@ -43,17 +45,17 @@ class WishListPage extends StatelessWidget {
                   fontWeight: medium,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Text(
                 'Ayo pilih jamur favoritmu!',
                 style: secondaryTextStyle,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Container(
+              SizedBox(
                 height: 44,
                 child: TextButton(
                   onPressed: () {
@@ -61,7 +63,7 @@ class WishListPage extends StatelessWidget {
                       context, '/home', (route) => false);
                   },
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 24,
                       vertical: 10,
                     ),
@@ -85,8 +87,6 @@ class WishListPage extends StatelessWidget {
       );
     }
 
-    ;
-
     Widget content() {
       return Expanded(
         child: Container(
@@ -107,7 +107,7 @@ class WishListPage extends StatelessWidget {
       children: [
         header(),
         // emptyWishList(),
-        wishlistProvider.wishlist.length == 0 ? emptyWishList() : content(),
+        wishlistProvider.wishlist.isEmpty ? emptyWishList() : content(),
       ],
     );
   }

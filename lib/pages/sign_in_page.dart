@@ -5,6 +5,8 @@ import 'package:jamur/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
+
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
@@ -50,7 +52,7 @@ class _SignInPageState extends State<SignInPage> {
 
     Widget header() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -61,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
                 fontWeight: semiBold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Text(
@@ -75,7 +77,7 @@ class _SignInPageState extends State<SignInPage> {
 
     Widget emailInput() {
       return Container(
-        margin: EdgeInsets.only(top: 70),
+        margin: const EdgeInsets.only(top: 70),
         child: Column(
           children: [
             Text(
@@ -85,12 +87,12 @@ class _SignInPageState extends State<SignInPage> {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Container(
               height: 50,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
@@ -104,7 +106,7 @@ class _SignInPageState extends State<SignInPage> {
                       'assets/icon_email.png',
                       width: 17,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
@@ -128,7 +130,7 @@ class _SignInPageState extends State<SignInPage> {
 
     Widget passwordInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             Text(
@@ -138,12 +140,12 @@ class _SignInPageState extends State<SignInPage> {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Container(
               height: 50,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
@@ -157,7 +159,7 @@ class _SignInPageState extends State<SignInPage> {
                       'assets/icon_password.png',
                       width: 17,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
@@ -184,7 +186,7 @@ class _SignInPageState extends State<SignInPage> {
       return Container(
         height: 40,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: TextButton(
           onPressed: handleSignIn,
           style: TextButton.styleFrom(
@@ -206,7 +208,7 @@ class _SignInPageState extends State<SignInPage> {
 
     Widget footer() {
       return Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -247,8 +249,8 @@ class _SignInPageState extends State<SignInPage> {
               header(),
               emailInput(),
               passwordInput(),
-              isLoading ? LoadingButton() : signInButton(),
-              Spacer(),
+              isLoading ? const LoadingButton() : signInButton(),
+              const Spacer(),
               footer(),
             ],
           ),

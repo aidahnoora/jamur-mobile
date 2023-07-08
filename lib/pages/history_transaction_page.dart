@@ -7,17 +7,20 @@ import 'package:jamur/widgets/history_tile.dart';
 import 'package:provider/provider.dart';
 
 class HistoryTransactionPage extends StatelessWidget {
+  const HistoryTransactionPage({super.key});
   @override
   Widget build(BuildContext context) {
-    AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
 
     HistoryProvider historyProvider = Provider.of<HistoryProvider>(context);
+    historyProvider.getHistory(user.token!);
+    // final histories = historyProvider.histories;
 
     PreferredSizeWidget header() {
       return AppBar(
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -25,7 +28,7 @@ class HistoryTransactionPage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'History Transaksi',
         ),
         actions: [
@@ -45,7 +48,7 @@ class HistoryTransactionPage extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child:
                   // Column(
                   //   children: [

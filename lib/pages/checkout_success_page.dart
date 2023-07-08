@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jamur/theme.dart';
 
 class CheckoutSuccessPage extends StatelessWidget {
+  const CheckoutSuccessPage({super.key});
+  
   @override
   Widget build(BuildContext context) {
 
@@ -9,7 +11,7 @@ class CheckoutSuccessPage extends StatelessWidget {
       return AppBar(
         backgroundColor: backgroundColor1,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Berhasil Checkout',
         ),
         elevation: 0,
@@ -25,7 +27,7 @@ class CheckoutSuccessPage extends StatelessWidget {
               'assets/icon_empty_cart.png',
               width: 80,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(
@@ -35,7 +37,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Text(
@@ -71,7 +73,7 @@ class CheckoutSuccessPage extends StatelessWidget {
             Container(
               width: 196,
               height: 44,
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 12,
               ),
               child: TextButton(
@@ -79,7 +81,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                   Navigator.pushNamedAndRemoveUntil(context, '/history', (route) => false);
                 },
                 style: TextButton.styleFrom(
-                  backgroundColor: Color(0xff39374B),
+                  backgroundColor: const Color(0xff39374B),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -89,7 +91,7 @@ class CheckoutSuccessPage extends StatelessWidget {
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
-                    color: Color(0xffB7B6BF)
+                    color: const Color(0xffB7B6BF)
                   ),
                 ),
               ),

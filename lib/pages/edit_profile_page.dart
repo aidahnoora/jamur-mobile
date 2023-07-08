@@ -5,6 +5,8 @@ import 'package:jamur/theme.dart';
 import 'package:provider/provider.dart';
 
 class EditProfilePage extends StatelessWidget {
+  const EditProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
 
@@ -14,7 +16,7 @@ class EditProfilePage extends StatelessWidget {
     PreferredSizeWidget header() {
       return AppBar(
         leading: IconButton(
-          icon: Icon(Icons.close),
+          icon: const Icon(Icons.close),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -22,26 +24,15 @@ class EditProfilePage extends StatelessWidget {
         backgroundColor: backgroundColor1,
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Edit Profil',
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.check,
-              color: primaryColor,
-            ),
-            onPressed: () {
-              
-            },
-          ),
-        ],
       );
     }
 
     Widget nameInput() {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 30,
         ),
         child: Column(
@@ -72,7 +63,7 @@ class EditProfilePage extends StatelessWidget {
 
     Widget usernameInput() {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 30,
         ),
         child: Column(
@@ -103,7 +94,7 @@ class EditProfilePage extends StatelessWidget {
 
     Widget emailInput() {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 30,
         ),
         child: Column(
@@ -147,7 +138,7 @@ class EditProfilePage extends StatelessWidget {
               margin: EdgeInsets.only(
                 top: defaultMargin,
               ),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   image: AssetImage(

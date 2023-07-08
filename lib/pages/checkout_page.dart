@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:jamur/providers/auth_provider.dart';
 import 'package:jamur/providers/cart_provider.dart';
 import 'package:jamur/providers/transaction_provider.dart';
@@ -6,14 +7,37 @@ import 'package:jamur/theme.dart';
 import 'package:jamur/widgets/checkout_card.dart';
 import 'package:jamur/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
+import 'dart:io';
+import 'dart:async';
 
 class CheckoutPage extends StatefulWidget {
+  const CheckoutPage({super.key});
+
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
   bool isLoading = false;
+  File? _image;
+  final picker = ImagePicker();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Future getImage(bool isCamera) async {
+    final imageFile = await picker.pickImage(
+        source: isCamera ? ImageSource.camera : ImageSource.gallery);
+    setState(() {
+      if (imageFile != null) {
+        _image = File(imageFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +55,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         authProvider.user.token!,
         cartProvider.carts,
         cartProvider.totalPrice(),
+        _image!
       )) {
         cartProvider.carts = [];
         Navigator.pushNamedAndRemoveUntil(
@@ -47,7 +72,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
         backgroundColor: backgroundColor1,
         elevation: 0,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Detail Checkout',
         ),
       );
@@ -87,7 +112,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             margin: EdgeInsets.only(
               top: defaultMargin,
             ),
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: backgroundColor4,
               borderRadius: BorderRadius.circular(12),
@@ -102,7 +127,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontWeight: medium,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
@@ -123,7 +148,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
                     Column(
@@ -170,7 +195,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             margin: EdgeInsets.only(
               top: defaultMargin,
             ),
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: backgroundColor4,
               borderRadius: BorderRadius.circular(12),
@@ -185,7 +210,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontWeight: medium,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
@@ -239,14 +264,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                   color: Color(0xff2E3141),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -269,20 +294,67 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ],
             ),
           ),
+          //bukti bayar
+          Container(
+            margin: EdgeInsets.only(
+              top: defaultMargin,
+            ),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: backgroundColor4,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Upload Bukti Pembayaran',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: medium,
+                  ),
+                ),
+                const SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        _image != null ? _image!.path:'Upload Gambar',
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 12,
+                        ),
+                        overflow: TextOverflow.fade,
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.camera_alt),
+                      color: Colors.blue,
+                      onPressed: () async {
+                        await getImage(true);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
           //button
           SizedBox(
             height: defaultMargin,
           ),
-          Divider(
+          const Divider(
             thickness: 1,
             color: Color(0xff2E3141),
           ),
           isLoading
               ? Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                   bottom: 30,
                 ),
-                child: LoadingButton(),
+                child: const LoadingButton(),
                 )
               : Container(
                   height: 50,

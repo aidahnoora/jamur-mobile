@@ -5,6 +5,8 @@ import 'package:jamur/theme.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
 
@@ -27,7 +29,7 @@ class ProfilePage extends StatelessWidget {
                     width: 64,
                   ),
                 ),
-                SizedBox(width: 16,),
+                const SizedBox(width: 16,),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,7 +68,7 @@ class ProfilePage extends StatelessWidget {
 
     Widget menuItem(String text) {
       return Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           top: 16,
         ),
         child: Row(
@@ -100,7 +102,7 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(

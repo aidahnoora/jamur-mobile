@@ -24,7 +24,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
 
     PreferredSizeWidget header() {
       return PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(60),
         child: AppBar(
           backgroundColor: backgroundColor1,
           centerTitle: false,
@@ -34,7 +34,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 'assets/image_shop_logo_online.png',
                 width: 50,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               Column(
@@ -66,10 +66,10 @@ class _DetailChatPageState extends State<DetailChatPage> {
       return Container(
         width: 225,
         height: 74,
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           bottom: 20,
         ),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: backgroundColor5,
           borderRadius: BorderRadius.circular(12),
@@ -86,7 +86,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 widget.product.galleries![0].url, width: 54
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Expanded(
@@ -99,7 +99,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     style: primaryTextStyle,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 2,
                   ),
                   Text(
@@ -126,7 +126,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
 
     Widget chatInput() {
       return Container(
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +139,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 Expanded(
                   child: Container(
                     height: 45,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                     ),
                     decoration: BoxDecoration(
@@ -156,7 +156,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 GestureDetector(

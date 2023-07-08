@@ -35,12 +35,12 @@ class ProductCard extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Color(0xffECEDEF),
+          color: const Color(0xffECEDEF),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             // Image.asset(
@@ -58,23 +58,23 @@ class ProductCard extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
-              margin: EdgeInsets.symmetric(
+              margin: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 6,),
+                  const SizedBox(height: 6,),
                   Text(
                     product.category!.name,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
                   ),
-                  SizedBox(height: 6,),
+                  const SizedBox(height: 6,),
                   Text(
                     product.name!,
                     style: blackTextStyle.copyWith(
@@ -84,7 +84,7 @@ class ProductCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  SizedBox(height: 6,),
+                  const SizedBox(height: 6,),
                   Text(
                     'Rp ${product.price}',
                     style: priceTextStyle.copyWith(

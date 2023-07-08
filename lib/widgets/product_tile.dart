@@ -4,8 +4,8 @@ import 'package:jamur/pages/product_page.dart';
 import 'package:jamur/theme.dart';
 
 class ProductTile extends StatelessWidget {
-  final ProductModel product;
 
+  final ProductModel product;
   ProductTile(this.product);
 
   @override
@@ -49,7 +49,7 @@ class ProductTile extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 12,
             ),
             Expanded(
@@ -62,7 +62,7 @@ class ProductTile extends StatelessWidget {
                       fontSize: 12,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6,
                   ),
                   Text(
@@ -72,7 +72,7 @@ class ProductTile extends StatelessWidget {
                       fontWeight: semiBold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6,
                   ),
                   Text(

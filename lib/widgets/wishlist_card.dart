@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:jamur/models/product_model.dart';
 import 'package:jamur/providers/wishlist_provider.dart';
@@ -21,8 +19,8 @@ class WishListCard extends StatelessWidget {
     String result = url.replaceAll('http://localhost', '');
 
     return Container(
-      margin: EdgeInsets.only(top: 20,),
-      padding: EdgeInsets.only(
+      margin: const EdgeInsets.only(top: 20,),
+      padding: const EdgeInsets.only(
         top: 10,
         left: 12,
         bottom: 14,
@@ -48,7 +46,7 @@ class WishListCard extends StatelessWidget {
               width: 60,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 12,
           ),
           Expanded(

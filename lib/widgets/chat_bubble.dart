@@ -18,14 +18,14 @@ class ChatBuble extends StatelessWidget {
     Widget productPreview() {
       return Container(
         width: 230,
-        margin: EdgeInsets.only(bottom: 12,),
-        padding: EdgeInsets.all(12),
+        margin: const EdgeInsets.only(bottom: 12,),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(isSender ? 12 : 0),
             topRight: Radius.circular(isSender ? 0 : 12),
-            bottomLeft: Radius.circular(12),
-            bottomRight: Radius.circular(12),
+            bottomLeft: const Radius.circular(12),
+            bottomRight: const Radius.circular(12),
           ),
           color: isSender ? backgroundColor5 : backgroundColor4,
         ),
@@ -40,7 +40,7 @@ class ChatBuble extends StatelessWidget {
                     width: 70,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 Expanded(
@@ -51,7 +51,7 @@ class ChatBuble extends StatelessWidget {
                         'Jamur Tiram 1 kg',
                         style: primaryTextStyle,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Text(
@@ -65,7 +65,7 @@ class ChatBuble extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -85,7 +85,7 @@ class ChatBuble extends StatelessWidget {
                     style: purpleTextStyle,
                   ),
                 ),
-                SizedBox(width: 8,),
+                const SizedBox(width: 8,),
                 TextButton(
                   onPressed: () {
                     
@@ -113,11 +113,11 @@ class ChatBuble extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(top: 30),
+      margin: const EdgeInsets.only(top: 30),
       child: Column(
         crossAxisAlignment: isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          hasProduct ? productPreview() : SizedBox(),
+          hasProduct ? productPreview() : const SizedBox(),
           Row(
             mainAxisAlignment:
                 isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
@@ -127,7 +127,7 @@ class ChatBuble extends StatelessWidget {
                   constraints: BoxConstraints(
                     maxWidth: MediaQuery.of(context).size.width * 0.6,
                   ),
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 16,
                     vertical: 12,
                   ),
@@ -135,8 +135,8 @@ class ChatBuble extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(isSender ? 12 : 0),
                       topRight: Radius.circular(isSender ? 0 : 12),
-                      bottomLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
+                      bottomLeft: const Radius.circular(12),
+                      bottomRight: const Radius.circular(12),
                     ),
                     color: isSender ? backgroundColor5 : backgroundColor4,
                   ),

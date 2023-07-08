@@ -3,13 +3,13 @@ import 'package:jamur/models/history_model.dart';
 
 class HistoryTile extends StatelessWidget {
   final HistoryModel history;
-  HistoryTile(this.history);
+  const HistoryTile(this.history, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
-      margin: EdgeInsets.only(
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.only(
         left: 30,
         right: 30,
         bottom: 10,
@@ -28,18 +28,18 @@ class HistoryTile extends StatelessWidget {
                   Text(
                     'Rp ${history.totalPrice}',
                     // 'Rp',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6,
                   ),
                   Text(
                     history.status!,
                     // 'lunas',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                     ),
                   ),

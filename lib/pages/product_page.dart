@@ -1,13 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:jamur/models/product_model.dart';
-import 'package:jamur/pages/detail_chat_page.dart';
 import 'package:jamur/providers/cart_provider.dart';
 import 'package:jamur/providers/wishlist_provider.dart';
 import 'package:jamur/theme.dart';
 import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
+  
   final ProductModel product;
   ProductPage(this.product);
 
@@ -110,31 +110,31 @@ class _ProductPageState extends State<ProductPage> {
       return Container(
         width: currentIndex == index ? 16 : 4,
         height: 4,
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 2,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: currentIndex == index ? primaryColor : Color(0xffC4C4C4),
+          color: currentIndex == index ? primaryColor : const Color(0xffC4C4C4),
         ),
       );
     }
 
-    Widget familiarJamurCard(String imageUrl) {
-      return Container(
-        width: 54,
-        height: 54,
-        margin: EdgeInsets.only(
-          right: 16,
-        ),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(imageUrl),
-          ),
-          borderRadius: BorderRadius.circular(6),
-        ),
-      );
-    }
+    // Widget familiarJamurCard(String imageUrl) {
+    //   return Container(
+    //     width: 54,
+    //     height: 54,
+    //     margin: const EdgeInsets.only(
+    //       right: 16,
+    //     ),
+    //     decoration: BoxDecoration(
+    //       image: DecorationImage(
+    //         image: AssetImage(imageUrl),
+    //       ),
+    //       borderRadius: BorderRadius.circular(6),
+    //     ),
+    //   );
+    // }
 
     Widget header() {
       int index = -1;
@@ -154,7 +154,7 @@ class _ProductPageState extends State<ProductPage> {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.chevron_left,
                   ),
                 ),
@@ -194,12 +194,12 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     Widget content() {
-      int index = -1;
+      // int index = -1;
 
       return Expanded(
         child: Container(
           width: double.infinity,
-          margin: EdgeInsets.only(
+          margin: const EdgeInsets.only(
             top: 17,
           ),
           padding: EdgeInsets.only(
@@ -208,7 +208,7 @@ class _ProductPageState extends State<ProductPage> {
             right: defaultMargin,
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.vertical(
+            borderRadius: const BorderRadius.vertical(
               top: Radius.circular(24),
             ),
             color: backgroundColor1,
@@ -283,7 +283,7 @@ class _ProductPageState extends State<ProductPage> {
                     left: defaultMargin,
                     right: defaultMargin,
                   ),
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: backgroundColor2,
                     borderRadius: BorderRadius.circular(4),
@@ -320,7 +320,7 @@ class _ProductPageState extends State<ProductPage> {
                           fontWeight: medium,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 12,
                       ),
                       Text(
@@ -372,7 +372,7 @@ class _ProductPageState extends State<ProductPage> {
                       Container(
                         width: 54,
                         height: 54,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
                               'assets/button_chat.png',
@@ -380,11 +380,11 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 16,
                       ),
                       Expanded(
-                        child: Container(
+                        child: SizedBox(
                           height: 54,
                           child: TextButton(
                             onPressed: () {
@@ -417,64 +417,64 @@ class _ProductPageState extends State<ProductPage> {
       );
     }
 
-    Widget customBottomNav() {
-      return Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
-          vertical: 16,
-        ),
-        color: backgroundColor1,
-        child: Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => DetailChatPage(widget.product),
-                  ),
-                );
-              },
-              child: Container(
-                width: 54,
-                height: 54,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/button_chat.png'),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: SizedBox(
-                width: 54,
-                height: 54,
-                child: TextButton(
-                  onPressed: () {
-                    cartProvider.addCart(widget.product);
-                    showSuccessDialog();
-                  },
-                  style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: primaryColor,
-                  ),
-                  child: Text(
-                    'Tambah ke Keranjang',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
+    // Widget customBottomNav() {
+    //   return Container(
+    //     padding: EdgeInsets.symmetric(
+    //       horizontal: defaultMargin,
+    //       vertical: 16,
+    //     ),
+    //     color: backgroundColor1,
+    //     child: Row(
+    //       children: [
+    //         GestureDetector(
+    //           onTap: () {
+    //             Navigator.push(
+    //               context,
+    //               MaterialPageRoute(
+    //                 builder: (_) => DetailChatPage(widget.product),
+    //               ),
+    //             );
+    //           },
+    //           child: Container(
+    //             width: 54,
+    //             height: 54,
+    //             decoration: const BoxDecoration(
+    //               image: DecorationImage(
+    //                 image: AssetImage('assets/button_chat.png'),
+    //               ),
+    //             ),
+    //           ),
+    //         ),
+    //         const SizedBox(width: 16),
+    //         Expanded(
+    //           child: SizedBox(
+    //             width: 54,
+    //             height: 54,
+    //             child: TextButton(
+    //               onPressed: () {
+    //                 cartProvider.addCart(widget.product);
+    //                 showSuccessDialog();
+    //               },
+    //               style: TextButton.styleFrom(
+    //                 shape: RoundedRectangleBorder(
+    //                   borderRadius: BorderRadius.circular(12),
+    //                 ),
+    //                 backgroundColor: primaryColor,
+    //               ),
+    //               child: Text(
+    //                 'Tambah ke Keranjang',
+    //                 style: primaryTextStyle.copyWith(
+    //                   fontSize: 16,
+    //                   fontWeight: semiBold,
+    //                 ),
+    //               ),
+    //             ),
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   );
+    // }
 
     return Scaffold(
       backgroundColor: backgroundColor6,

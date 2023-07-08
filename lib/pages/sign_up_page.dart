@@ -5,6 +5,8 @@ import 'package:jamur/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -55,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget header() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -66,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 fontWeight: semiBold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             Text(
@@ -80,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget nameInput() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: Column(
           children: [
             Text(
@@ -90,12 +92,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Container(
               height: 50,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
@@ -109,7 +111,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       'assets/icon_name.png',
                       width: 17,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
@@ -133,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget usernameInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             Text(
@@ -143,12 +145,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Container(
               height: 50,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
@@ -162,7 +164,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       'assets/icon_username.png',
                       width: 17,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
@@ -186,7 +188,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget emailInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             Text(
@@ -196,12 +198,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Container(
               height: 50,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
@@ -215,7 +217,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       'assets/icon_email.png',
                       width: 17,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
@@ -239,7 +241,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget passwordInput() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             Text(
@@ -249,12 +251,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 fontWeight: medium,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             Container(
               height: 50,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
               decoration: BoxDecoration(
@@ -268,7 +270,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       'assets/icon_password.png',
                       width: 17,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                     ),
                     Expanded(
@@ -295,7 +297,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return Container(
         height: 40,
         width: double.infinity,
-        margin: EdgeInsets.only(top: 30),
+        margin: const EdgeInsets.only(top: 30),
         child: TextButton(
           onPressed: handleSignUp,
           style: TextButton.styleFrom(
@@ -317,7 +319,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     Widget footer() {
       return Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -360,8 +362,8 @@ class _SignUpPageState extends State<SignUpPage> {
               usernameInput(),
               emailInput(),
               passwordInput(),
-              isLoading ? LoadingButton() : signUpButton(),
-              Spacer(),
+              isLoading ? const LoadingButton() : signUpButton(),
+              const Spacer(),
               footer(),
             ],
           ),

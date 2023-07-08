@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:jamur/models/user_model.dart';
+import 'package:jamur/providers/auth_provider.dart';
+import 'package:jamur/providers/history_provider.dart';
 import 'package:jamur/theme.dart';
-import 'package:jamur/widgets/chat_tile.dart';
+// import 'package:jamur/widgets/chat_tile.dart';
+import 'package:jamur/widgets/history_tile.dart';
+import 'package:provider/provider.dart';
 
-class ChatPage extends StatelessWidget {
+class HistoryPage extends StatelessWidget {
+  const HistoryPage({super.key});
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
+    HistoryProvider historyProvider = Provider.of<HistoryProvider>(context);
+    historyProvider.getHistory(user.token!);
+    // final histories = historyProvider.histories;
 
     Widget header(){
       return AppBar(
         backgroundColor: backgroundColor1,
         centerTitle: true,
         title: Text(
-          'Message Support',
+          'Histori Transaksi',
           style: primaryTextStyle.copyWith(
             fontSize: 18,
             fontWeight: medium,
@@ -31,31 +43,32 @@ class ChatPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/icon_headset.png',
+                'assets/icon_empty_cart.png',
                 width: 80,
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               Text(
-                'Oops no message yet',
+                'Ups! Histori masih kosong',
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
                 ),
               ),
-              SizedBox(height: 12,),
+              const SizedBox(height: 12,),
               Text(
-                'You have ever done a transaction',
+                'Belum pernah belanja?',
                 style: secondaryTextStyle,
               ),
-              SizedBox(height: 20,),
-              Container(
+              const SizedBox(height: 20,),
+              SizedBox(
                 height: 44,
                 child: TextButton(
                   onPressed: () {
-                    
+                    Navigator.pushNamedAndRemoveUntil(
+                      context, '/home', (route) => false);
                   },
                   style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 24,
                       vertical: 10,
                     ),
@@ -65,7 +78,7 @@ class ChatPage extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Explore Store',
+                    'Belanja',
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: medium,
@@ -80,19 +93,22 @@ class ChatPage extends StatelessWidget {
     }
 
     Widget content() {
-      return Expanded(
-        child: Container(
-          width: double.infinity,
-          color: backgroundColor3,
-          child: ListView(
-            padding: EdgeInsets.symmetric(
-              horizontal: defaultMargin,
+      return Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(30),
+              child:
+                  Column(
+                    children: historyProvider.histories
+                        .map(
+                          (history) => HistoryTile(history),
+                        )
+                        .toList(),
+                    ),
             ),
-            children: [
-              ChatTile(),
-            ],
           ),
-        ),
+        ],
       );
     }
 
@@ -100,7 +116,7 @@ class ChatPage extends StatelessWidget {
       children: [
         header(),
         // emptyChat(),
-        content(),
+        historyProvider.histories.isEmpty ? emptyChat() : content(),
       ],
     );
   }
