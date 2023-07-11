@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jamur/providers/auth_provider.dart';
@@ -7,8 +11,9 @@ import 'package:jamur/theme.dart';
 import 'package:jamur/widgets/checkout_card.dart';
 import 'package:jamur/widgets/loading_button.dart';
 import 'package:provider/provider.dart';
-import 'dart:io';
 import 'dart:async';
+
+import 'package:universal_io/io.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
@@ -19,8 +24,9 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   bool isLoading = false;
-  File? _image;
-  final picker = ImagePicker();
+  File? _pickImage;
+  Uint8List bytes = Uint8List(8);
+  String? base64img;
 
   @override
   void initState() {
@@ -28,38 +34,54 @@ class _CheckoutPageState extends State<CheckoutPage> {
   }
 
   Future getImage(bool isCamera) async {
-    final imageFile = await picker.pickImage(
+    final ImagePicker picker = ImagePicker();
+    XFile? imageFile = await picker.pickImage(
         source: isCamera ? ImageSource.camera : ImageSource.gallery);
-    setState(() {
+    if (!kIsWeb) {
       if (imageFile != null) {
-        _image = File(imageFile.path);
+        var selected = File(imageFile.path);
+        setState(() {
+          _pickImage = selected;
+        });
       } else {
         print('No image selected.');
       }
-    });
+    } else if (kIsWeb) {
+      bytes = await imageFile!.readAsBytes();
+      base64img = base64Encode(bytes);
+      setState(() {});
+    } else {
+      print('Ada sesuatu yang salah');
+    }
+    //Navigator.of(ctxDialogLoading).pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    
     CartProvider cartProvider = Provider.of<CartProvider>(context);
-    TransactionProvider transactionProvider = Provider.of<TransactionProvider>(context);
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleCheckout() async {
       setState(() {
         isLoading = true;
       });
-
-      if (await transactionProvider.checkout(
-        authProvider.user.token!,
-        cartProvider.carts,
-        cartProvider.totalPrice(),
-        _image!
-      )) {
-        cartProvider.carts = [];
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/checkout-success', (route) => false);
+      print('jalan');
+      if (!kIsWeb) {
+        if (await transactionProvider.checkout(authProvider.user.token!,
+            cartProvider.carts, cartProvider.totalPrice(), _pickImage!)) {
+          cartProvider.carts = [];
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/checkout-success', (route) => false);
+        }
+      } else {
+        if (await transactionProvider.checkoutWeb(authProvider.user.token!,
+            cartProvider.carts, cartProvider.totalPrice(), base64img!)) {
+          cartProvider.carts = [];
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/checkout-success', (route) => false);
+        }
       }
 
       setState(() {
@@ -294,7 +316,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ],
             ),
           ),
-          //bukti bayar
           Container(
             margin: EdgeInsets.only(
               top: defaultMargin,
@@ -320,15 +341,26 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Flexible(
-                      child: Text(
-                        _image != null ? _image!.path:'Upload Gambar',
-                        style: secondaryTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
-                        overflow: TextOverflow.fade,
-                      ),
-                    ),
+                    kIsWeb
+                        ? SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: Image.memory(
+                              bytes,
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                        : Flexible(
+                            child: Text(
+                              _pickImage != null
+                                  ? _pickImage!.path
+                                  : 'Upload Gambar',
+                              style: secondaryTextStyle.copyWith(
+                                fontSize: 12,
+                              ),
+                              overflow: TextOverflow.fade,
+                            ),
+                          ),
                     IconButton(
                       icon: const Icon(Icons.camera_alt),
                       color: Colors.blue,
@@ -351,10 +383,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
           ),
           isLoading
               ? Container(
-                margin: const EdgeInsets.only(
-                  bottom: 30,
-                ),
-                child: const LoadingButton(),
+                  margin: const EdgeInsets.only(
+                    bottom: 30,
+                  ),
+                  child: const LoadingButton(),
                 )
               : Container(
                   height: 50,

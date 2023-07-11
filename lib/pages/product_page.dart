@@ -236,6 +236,13 @@ class _ProductPageState extends State<ProductPage> {
                               widget.product.category!.name,
                               style: primaryTextStyle.copyWith(fontSize: 12),
                             ),
+                            Text(
+                              'Stok : ${widget.product.stock}',
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 13,
+                                fontWeight: semiBold,
+                              ),
+                            ),
                           ],
                         ),
                       ),

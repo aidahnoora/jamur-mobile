@@ -22,7 +22,7 @@ class HistoryTransactionPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
           },
         ),
         backgroundColor: backgroundColor1,
@@ -31,15 +31,6 @@ class HistoryTransactionPage extends StatelessWidget {
         title: const Text(
           'History Transaksi',
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.check,
-              color: primaryColor,
-            ),
-            onPressed: () {},
-          ),
-        ],
       );
     }
 
@@ -50,12 +41,6 @@ class HistoryTransactionPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(30),
               child:
-                  // Column(
-                  //   children: [
-                  //     HistoryTile(),
-                  //     HistoryTile(),
-                  //   ],
-                  // ),
                   Column(
                     children: historyProvider.histories
                         .map(
